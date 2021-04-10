@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { CreateRouteDto } from './dto/create-route.dto';
 import { UpdateRouteDto } from './dto/update-route.dto';
@@ -42,10 +43,29 @@ export class RouteController {
     });
   }
 
+  @Get('statuses')
+  getRouteStatuses() {
+    return this.routeService.getRouteStatuses();
+  }
+
   @Get()
-  findAll() {
-    const params = {};
-    return this.routeService.findAll(params);
+  findAll(
+    @Query('skip') skip?,
+    @Query('take') take?,
+    @Query('orderBy') orderBy?,
+  ) {
+    let parsedOrderBy;
+    try {
+      parsedOrderBy = JSON.parse(orderBy);
+    } catch (err) {
+      parsedOrderBy = {};
+    }
+
+    return this.routeService.findAll({
+      skip: skip ? Number(skip) : undefined,
+      take: take ? Number(take) : undefined,
+      orderBy: parsedOrderBy,
+    });
   }
 
   @Get(':id')

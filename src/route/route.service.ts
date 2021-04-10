@@ -51,4 +51,8 @@ export class RouteService {
   async remove(where: Prisma.RouteWhereUniqueInput): Promise<Route> {
     return this.prisma.route.delete({ where });
   }
+
+  async getRouteStatuses() {
+    return this.prisma.routeStatus.findMany();
+  }
 }

@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  Query,
 } from '@nestjs/common';
 import { CreateTransportDto } from './dto/create-transport.dto';
 import { UpdateTransportDto } from './dto/update-transport.dto';
@@ -14,6 +15,16 @@ import { TransportService } from './transport.service';
 @Controller('transport')
 export class TransportController {
   constructor(private readonly transportService: TransportService) {}
+
+  @Get('/statuses')
+  getTransportStatuses() {
+    return this.transportService.getTransportStatuses();
+  }
+
+  @Get('/types')
+  getTransportTypes() {
+    return this.transportService.getTransportTypes();
+  }
 
   @Post()
   create(
@@ -45,9 +56,22 @@ export class TransportController {
   }
 
   @Get()
-  findAll() {
-    const params = {};
-    return this.transportService.findAll(params);
+  findAll(
+    @Query('skip') skip?,
+    @Query('take') take?,
+    @Query('orderBy') orderBy?,
+  ) {
+    let parsedOrderBy;
+    try {
+      parsedOrderBy = JSON.parse(orderBy);
+    } catch (err) {
+      parsedOrderBy = {};
+    }
+    return this.transportService.findAll({
+      skip: skip ? Number(skip) : undefined,
+      take: take ? Number(take) : undefined,
+      orderBy: parsedOrderBy,
+    });
   }
 
   @Get(':id')

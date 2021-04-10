@@ -52,4 +52,12 @@ export class TransportService {
   async remove(where: Prisma.TransportWhereUniqueInput): Promise<Transport> {
     return this.prisma.transport.delete({ where });
   }
+
+  async getTransportStatuses() {
+    return this.prisma.transportStatus.findMany();
+  }
+
+  async getTransportTypes() {
+    return this.prisma.transportType.findMany();
+  }
 }
