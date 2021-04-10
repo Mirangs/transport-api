@@ -25,6 +25,11 @@ export class RouteService {
       cursor,
       where,
       orderBy,
+      include: {
+        routeStatus: true,
+        neededTransportType: true,
+        transport: true,
+      },
     });
   }
 

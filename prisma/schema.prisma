@@ -47,6 +47,7 @@ model Route {
   //TODO: move cities to another table
   originCity            String
   destinationCity       String
+  //TODO: calculate distance based on cities from map
   distance              Float
   departmentDate        DateTime
   neededTransportTypeId Int?

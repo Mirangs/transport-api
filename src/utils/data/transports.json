@@ -1,0 +1,34 @@
+{
+  "initTransports": [
+    {
+      "licensePlate": "134fadf13",
+      "model": "Super Truck 2000",
+      "transportType": "Heavy Truck",
+      "mileage": 50000
+    },
+    {
+      "licensePlate": "adfadf1341",
+      "model": "Ford F-150",
+      "transportType": "Light Duty Truck",
+      "mileage": 25000
+    },
+    {
+      "licensePlate": "dgws323rsdv",
+      "model": "Toyota Tundra",
+      "transportType": "Flatbed Truck",
+      "mileage": 75000
+    },
+    {
+      "licensePlate": "sdgs2134sd",
+      "model": "GMC Canyon",
+      "transportType": "Tanker Truck",
+      "mileage": 100000
+    },
+    {
+      "licensePlate": "ad134faf",
+      "model": "Nissan Frontier",
+      "transportType": "Panel Truck",
+      "mileage": 50000
+    }
+  ]
+}

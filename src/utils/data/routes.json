@@ -1,0 +1,34 @@
+{
+  "initRoutes": [
+    {
+      "originCity": "New York",
+      "destinationCity": "Houston",
+      "distance": 1800,
+      "estimatedRevenue": 1000
+    },
+    {
+      "originCity": "Houston",
+      "destinationCity": "New York",
+      "distance": 1800,
+      "estimatedRevenue": 1200
+    },
+    {
+      "originCity": "Chicago",
+      "destinationCity": "Los Angeles",
+      "distance": 2200,
+      "estimatedRevenue": 1500
+    },
+    {
+      "originCity": "Seattle",
+      "destinationCity": "Denver",
+      "distance": 1200,
+      "estimatedRevenue": 900
+    },
+    {
+      "originCity": "San Francisco",
+      "destinationCity": "Columbus",
+      "distance": 6,
+      "estimatedRevenue": 100
+    }
+  ]
+}

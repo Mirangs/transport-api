@@ -26,8 +26,8 @@ export class TransportService {
       where,
       orderBy,
       include: {
-        status: { select: { name: true } },
-        transportType: { select: { name: true } },
+        status: true,
+        transportType: true,
       },
     });
   }

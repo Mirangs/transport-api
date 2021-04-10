@@ -1,0 +1,15 @@
+{
+  "initTransportTypes": [
+    "Semi-Trailer Truck",
+    "Extra Duty Truck",
+    "18-Wheeler Truck",
+    "Tanker Truck",
+    "Heavy Truck",
+    "Flatbed Truck",
+    "Garbage Truck",
+    "Dump Truck",
+    "Panel Truck",
+    "General Truck",
+    "Light Duty Truck"
+  ]
+}
