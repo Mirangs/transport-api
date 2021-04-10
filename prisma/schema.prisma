@@ -1,0 +1,60 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model TransportType {
+  id        Int         @id @default(autoincrement())
+  name      String
+  transport Transport[]
+  route     Route[]
+}
+
+model TransportStatus {
+  id        Int         @id @default(autoincrement())
+  name      String
+  transport Transport[]
+}
+
+model Transport {
+  id              Int             @id @default(autoincrement())
+  licensePlate    String          @unique
+  model           String
+  transportTypeId Int?
+  transportType   TransportType?  @relation(fields: [transportTypeId], references: [id])
+  purchaseDate    DateTime
+  mileage         Int
+  statusId        Int
+  status          TransportStatus @relation(fields: [statusId], references: [id])
+  route           Route?
+}
+
+model RouteStatus {
+  id    Int     @id @default(autoincrement())
+  name  String
+  route Route[]
+}
+
+model Route {
+  id                    Int            @id @default(autoincrement())
+  //TODO: move cities to another table
+  originCity            String
+  destinationCity       String
+  distance              Float
+  departmentDate        DateTime
+  neededTransportTypeId Int?
+  neededTransportType   TransportType? @relation(fields: [neededTransportTypeId], references: [id])
+  estimatedRevenue      Float
+  transportId           Int?
+  transport             Transport?     @relation(fields: [transportId], references: [id])
+  routeStatusId         Int
+  routeStatus           RouteStatus    @relation(fields: [routeStatusId], references: [id])
+  fulfillmentDate       DateTime?
+}
