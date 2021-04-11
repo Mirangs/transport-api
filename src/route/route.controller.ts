@@ -29,6 +29,7 @@ export class RouteController {
       estimatedRevenue,
       routeStatusId,
       neededTransportTypeId,
+      fulfillmentDate,
       transportId,
     } = routeData;
     return this.routeService.create({
@@ -37,9 +38,24 @@ export class RouteController {
       originCity,
       distance,
       estimatedRevenue,
-      routeStatus: { connect: { id: routeStatusId } },
-      neededTransportType: { connect: { id: neededTransportTypeId } },
-      transport: { connect: { id: transportId } },
+      fulfillmentDate,
+      routeStatus: { connect: { id: Number(routeStatusId) } },
+      ...(neededTransportTypeId
+        ? {
+            neededTransportType: {
+              connect: {
+                id: Number(neededTransportTypeId),
+              },
+            },
+          }
+        : {}),
+      ...(transportId
+        ? {
+            transport: {
+              connect: { id: Number(transportId) },
+            },
+          }
+        : {}),
     });
   }
 
@@ -84,7 +100,9 @@ export class RouteController {
       routeStatusId,
       neededTransportTypeId,
       transportId,
+      fulfillmentDate,
     } = routeData;
+
     return this.routeService.update({
       where: { id: Number(id) },
       data: {
@@ -93,9 +111,12 @@ export class RouteController {
         originCity,
         distance,
         estimatedRevenue,
-        routeStatus: { connect: { id: routeStatusId } },
-        neededTransportType: { connect: { id: neededTransportTypeId } },
-        transport: { connect: { id: transportId } },
+        fulfillmentDate,
+        routeStatusId: Number(routeStatusId),
+        neededTransportTypeId: neededTransportTypeId
+          ? Number(neededTransportTypeId)
+          : null,
+        transportId: transportId ? Number(transportId) : null,
       },
     });
   }

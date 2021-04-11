@@ -7,7 +7,7 @@ import { Route } from './entities/route.entity';
 export class RouteService {
   constructor(private prisma: PrismaService) {}
 
-  async create(data: Prisma.RouteCreateInput): Promise<Route> {
+  async create(data: any): Promise<Route> {
     return this.prisma.route.create({ data });
   }
 
@@ -39,7 +39,7 @@ export class RouteService {
 
   async update(params: {
     where: Prisma.RouteWhereUniqueInput;
-    data: Prisma.RouteUpdateInput;
+    data: any;
   }): Promise<Route> {
     const { where, data } = params;
     return this.prisma.route.update({

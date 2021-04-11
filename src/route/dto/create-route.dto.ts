@@ -4,7 +4,8 @@ export class CreateRouteDto {
   originCity: string;
   distance: number;
   estimatedRevenue: number;
-  routeStatusId: number;
-  neededTransportTypeId?: number;
-  transportId?: number;
+  routeStatusId: string;
+  neededTransportTypeId?: string;
+  transportId?: string;
+  fulfillmentDate?: Date;
 }

@@ -60,17 +60,26 @@ export class TransportController {
     @Query('skip') skip?,
     @Query('take') take?,
     @Query('orderBy') orderBy?,
+    @Query('where') where?,
   ) {
     let parsedOrderBy;
+    let parsedWhere;
+
     try {
       parsedOrderBy = JSON.parse(orderBy);
     } catch (err) {
       parsedOrderBy = {};
     }
+    try {
+      parsedWhere = JSON.parse(where);
+    } catch (err) {
+      parsedWhere = {};
+    }
     return this.transportService.findAll({
       skip: skip ? Number(skip) : undefined,
       take: take ? Number(take) : undefined,
       orderBy: parsedOrderBy,
+      where: parsedWhere,
     });
   }
 

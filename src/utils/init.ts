@@ -7,11 +7,11 @@ import { initRoutes } from './data/routes.json';
 
 const prisma = new PrismaClient();
 const main = async () => {
-  await prisma.transportType.deleteMany();
   await prisma.transport.deleteMany();
+  await prisma.transportType.deleteMany();
   await prisma.transportStatus.deleteMany();
-  await prisma.routeStatus.deleteMany();
   await prisma.route.deleteMany();
+  await prisma.routeStatus.deleteMany();
 
   const transportTypesPromises = initTransportTypes.map(
     async (transportTypeName) => {
