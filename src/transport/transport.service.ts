@@ -60,4 +60,15 @@ export class TransportService {
   async getTransportTypes() {
     return this.prisma.transportType.findMany();
   }
+
+  async makeTransportBusy(id: number) {
+    const busyStatus = await this.prisma.transportStatus.findFirst({
+      where: { name: 'Busy' },
+    });
+
+    return this.prisma.transport.update({
+      where: { id },
+      data: { statusId: busyStatus.id },
+    });
+  }
 }

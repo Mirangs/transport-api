@@ -55,6 +55,11 @@ export class TransportController {
     });
   }
 
+  @Post('/busy/:id')
+  makeTransportBusy(@Param('id') id: string) {
+    return this.transportService.makeTransportBusy(Number(id));
+  }
+
   @Get()
   findAll(
     @Query('skip') skip?,
